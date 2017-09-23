@@ -1,6 +1,7 @@
 package com.example.bruce.androidlabs;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +22,8 @@ public class LoginActivity extends Activity {
         final Button button = findViewById(R.id.button_login);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this,StartActivity.class);
+                startActivity(intent);
                 // Code here executes on main thread after user presses button
             }
         });
