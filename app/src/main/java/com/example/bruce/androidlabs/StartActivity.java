@@ -1,18 +1,40 @@
 package com.example.bruce.androidlabs;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+
 
 public class StartActivity extends Activity {
 
     protected static final String ACTIVITY_NAME = "StartActivity";
+//    static final int PICK_ACTIVITY_REQUEST = 10;
+//    static final int RESULT_OK = 11;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-        Log.i(ACTIVITY_NAME,"In onCreate()");
+        Log.i(ACTIVITY_NAME, "In onCreate()");
+
+        final Button button = (Button)findViewById(R.id.button);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v){
+                Intent intent = new Intent(StartActivity.this,ListItemsActivity.class);
+                startActivityForResult(intent, 10);
+            }
+        });
+    }
+
+    protected void onActivityResult(int requestCode, int responseCode, Intent data){
+        if (requestCode == 10 && responseCode == RESULT_OK); {
+            Log.i(ACTIVITY_NAME,"Returned to StartActivity.onActivityResult");
+        }
     }
 
     protected void onResume(){

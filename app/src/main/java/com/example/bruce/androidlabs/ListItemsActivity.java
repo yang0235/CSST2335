@@ -1,18 +1,55 @@
 package com.example.bruce.androidlabs;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
 public class ListItemsActivity extends Activity {
 
     protected static final String ACTIVITY_NAME = "ListItemsActivity";
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+
+
+//    static final int result = 11;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_items);
         Log.i(ACTIVITY_NAME,"In onCreate()");
+
+        Intent returnIntent = new Intent();
+        setResult(Activity.RESULT_OK, returnIntent);
+//        finish();
+
+        ImageButton imageButton = (ImageButton)findViewById(R.id.imageButton);
+        imageButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                        startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+                    }
+                }
+        });
+    }
+
+    protected void onActivityResult(int requestCode, int responseCode, Intent data){
+        setResult(Activity.RESULT_OK);
+        if (requestCode == REQUEST_IMAGE_CAPTURE && responseCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            BitmapDrawable bitmapDrawable = (BitmapDrawable) extras.get("data");
+            ImageButton imageButton = (ImageButton)findViewById(R.id.imageButton);
+            imageButton.setBackground(bitmapDrawable);
+        }
     }
 
     protected void onResume(){
@@ -39,4 +76,6 @@ public class ListItemsActivity extends Activity {
         super.onDestroy();
         Log.i(ACTIVITY_NAME,"In onDestroy()");
     }
+
+
 }
