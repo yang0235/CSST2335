@@ -1,6 +1,8 @@
 package com.example.bruce.androidlabs;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -8,8 +10,12 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Switch;
+import android.widget.Toast;
 
 public class ListItemsActivity extends Activity {
 
@@ -25,8 +31,8 @@ public class ListItemsActivity extends Activity {
         setContentView(R.layout.activity_list_items);
         Log.i(ACTIVITY_NAME,"In onCreate()");
 
-        Intent returnIntent = new Intent();
-        setResult(Activity.RESULT_OK, returnIntent);
+//        Intent returnIntent = new Intent();
+//        setResult(Activity.RESULT_OK, returnIntent);
 //        finish();
 
         ImageButton imageButton = (ImageButton)findViewById(R.id.imageButton);
@@ -37,6 +43,53 @@ public class ListItemsActivity extends Activity {
                         startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
                     }
                 }
+        });
+
+        Switch switchButton = (Switch)findViewById(R.id.switchButton);
+        switchButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton switchButton, boolean isChecked) {
+                if (isChecked){
+                    CharSequence text = "Switch is On";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(getApplicationContext(), text, duration); //this is the ListActivity
+                    toast.show(); //display your message box
+                }
+                if (!isChecked){
+                    CharSequence text = "Switch is Off";
+                    int duration = Toast.LENGTH_LONG;
+                    Toast toast = Toast.makeText(getApplicationContext(), text, duration); //this is the ListActivity
+                    toast.show(); //display your message box
+                }
+            }
+        });
+
+        CheckBox checkBox = (CheckBox)findViewById(R.id.checkBox);
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton checkBox, boolean isChecked) {
+                if (isChecked){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(ListItemsActivity.this);
+                    builder.setMessage(R.string.dialog_message) //Add a dialog message to strings.xml
+
+                            .setTitle(R.string.dialog_title)
+                            .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    Intent resultIntent = new Intent(  );
+                                    resultIntent.putExtra("Response", "Here is my response");
+                                    setResult(Activity.RESULT_OK, resultIntent);
+                                    finish();
+                                    // User clicked OK button
+                                }
+                            })
+                            .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    // User cancelled the dialog
+                                }
+                            })
+                            .show();
+                }
+            }
         });
     }
 

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 
 public class StartActivity extends Activity {
@@ -32,8 +33,13 @@ public class StartActivity extends Activity {
     }
 
     protected void onActivityResult(int requestCode, int responseCode, Intent data){
-        if (requestCode == 10 && responseCode == RESULT_OK); {
+        if (requestCode == 10 && responseCode == Activity.RESULT_OK); {
             Log.i(ACTIVITY_NAME,"Returned to StartActivity.onActivityResult");
+            String messagePassed = data.getStringExtra("Response");
+            CharSequence text = "ListItemActivity passed: ";
+            int duration = Toast.LENGTH_LONG;
+            Toast toast = Toast.makeText(getApplicationContext(), text+messagePassed, duration); //this is the ListActivity
+            toast.show();
         }
     }
 
