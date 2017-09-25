@@ -23,15 +23,16 @@ public class LoginActivity extends Activity {
         Log.i(ACTIVITY_NAME,"In onCreate()");
 
         final Button button_login = (Button)findViewById(R.id.button_login);
-        final SharedPreferences prefs = getSharedPreferences(getString(R.string.Email), Context.MODE_PRIVATE);
-        prefs.getString("DefaultEmail","emai@domain.com");
+        final EditText editText = (EditText)findViewById(R.id.editText);
+        final SharedPreferences prefs = getSharedPreferences("User_Info", Context.MODE_PRIVATE);
+        editText.setText(prefs.getString("email",""));
 
 
         button_login.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
                 SharedPreferences.Editor editor = prefs.edit();
-                editor.putString(getString(R.string.Email),"aaa@aaa.com");
+                editor.putString("email",editText.getText().toString());
                 editor.commit();
                 Intent intent = new Intent(LoginActivity.this,StartActivity.class);
                 startActivity(intent);

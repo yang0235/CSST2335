@@ -3,8 +3,6 @@ package com.example.bruce.androidlabs;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -46,9 +44,9 @@ public class ListItemsActivity extends Activity {
         setResult(Activity.RESULT_OK);
         if (requestCode == REQUEST_IMAGE_CAPTURE && responseCode == RESULT_OK) {
             Bundle extras = data.getExtras();
-            BitmapDrawable bitmapDrawable = (BitmapDrawable) extras.get("data");
+            Bitmap bitmap = (Bitmap) extras.get("data");
             ImageButton imageButton = (ImageButton)findViewById(R.id.imageButton);
-            imageButton.setBackground(bitmapDrawable);
+            imageButton.setImageBitmap(bitmap);
         }
     }
 
