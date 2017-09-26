@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Lab1</string>
+    <string name="app_name">实验一</string>
     <string name="hello_message">你好世界！</string>
     <string name="ButtonText">这是一个按钮</string>
+    <string name="Log">登录</string>
+    <string name="psd">密码</string>
+    <string name="Loghint">请输入登录名</string>
+    <string name="Rbtn">点击按钮</string>
+    <string name="CheckBox">勾选按钮</string>
+    <string name="Switch">这个是什么？</string>
+
 </resources>
