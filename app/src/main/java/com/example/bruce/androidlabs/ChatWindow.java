@@ -16,16 +16,21 @@ import java.util.ArrayList;
 
 public class ChatWindow extends Activity {
 
-    Button btnSend = (Button)findViewById(R.id.buttonSend);
-    EditText chatText = (EditText)findViewById(R.id.chatText);
-    ListView chatView = (ListView)findViewById(R.id.chatView);
-
-    ArrayList<String>  storedMessage = new ArrayList<String>();
+    Button btnSend;
+    EditText chatText;
+    ListView chatView;
+    ArrayList<String>  storedMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_window);
+
+        btnSend = (Button)findViewById(R.id.buttonSend);
+        chatText = (EditText)findViewById(R.id.chatText);
+        chatView = (ListView)findViewById(R.id.chatView);
+        storedMessage = new ArrayList<String>();
+
         final ChatAdapter messageAdapter = new ChatAdapter(this);
         chatView.setAdapter(messageAdapter);
 
@@ -37,8 +42,6 @@ public class ChatWindow extends Activity {
                 chatText.setText("");
             }}
         );
-
-
     }
 
     private class ChatAdapter extends ArrayAdapter<String>{

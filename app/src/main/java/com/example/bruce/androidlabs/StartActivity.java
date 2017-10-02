@@ -33,16 +33,26 @@ public class StartActivity extends Activity {
         });
 
         buttonChat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.i(ACTIVITY_NAME,"User clicked Start Chat");
+            public void onClick(View e) {
                 Intent intent = new Intent(StartActivity.this,ChatWindow.class);
+                startActivity(intent);
+                Log.i(ACTIVITY_NAME,"User clicked Start Chat");
             }
         });
     }
 
     protected void onActivityResult(int requestCode, int responseCode, Intent data){
-        if (requestCode == 10 && responseCode == Activity.RESULT_OK); {
+//        if (requestCode == 10){
+//            Log.i(ACTIVITY_NAME, "Returned to StartActivity.onActivityResult");
+//        }
+//        if (responseCode == Activity.RESULT_OK){
+//            String messagePassed = data.getStringExtra("Response");
+//            CharSequence text = "ListItemActivity passed: ";
+//            int duration = Toast.LENGTH_LONG;
+//            Toast toast = Toast.makeText(getApplicationContext(), text+messagePassed, duration); //this is the ListActivity
+//            toast.show();
+//        }
+        if ((requestCode == 10 && responseCode == Activity.RESULT_OK) || responseCode == Activity.RESULT_OK) {
             Log.i(ACTIVITY_NAME,"Returned to StartActivity.onActivityResult");
             String messagePassed = data.getStringExtra("Response");
             CharSequence text = "ListItemActivity passed: ";
