@@ -12,4 +12,6 @@
     <string name="dialog_title">Warning!</string>
     <string name="ok">YES</string>
     <string name="cancel">NO</string>
+    <string name="buttonChat">Start Chat</string>
+    <string name="buttonSend">Send</string>
 </resources>

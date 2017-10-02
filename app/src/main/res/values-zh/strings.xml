@@ -13,5 +13,7 @@
     <string name="dialog_title">警告</string>
     <string name="ok">是</string>
     <string name="cancel">否</string>
+    <string name="buttonChat">开始聊天</string>
+    <string name="buttonSend">发送</string>
 
 </resources>
