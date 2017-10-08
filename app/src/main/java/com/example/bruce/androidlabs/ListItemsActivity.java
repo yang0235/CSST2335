@@ -94,8 +94,8 @@ public class ListItemsActivity extends Activity {
     }
 
     protected void onActivityResult(int requestCode, int responseCode, Intent data){
-        setResult(Activity.RESULT_OK);
-        if (requestCode == REQUEST_IMAGE_CAPTURE && responseCode == RESULT_OK) {
+//        setResult(Activity.RESULT_OK);
+        if (requestCode == REQUEST_IMAGE_CAPTURE) {
             Bundle extras = data.getExtras();
             Bitmap bitmap = (Bitmap) extras.get("data");
             ImageButton imageButton = (ImageButton)findViewById(R.id.imageButton);
